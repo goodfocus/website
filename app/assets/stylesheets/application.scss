@@ -1,0 +1,38 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* color palette */
+:root {
+    --olive-drab-dark: #3d3522ff; /* RGB: 61, 53, 34 */
+    --olive-drab: #4a442dff; /* RGB: 74, 68, 45 */
+    --hunter-green: #386150ff; /* RGB: 56, 97, 80 */
+    --keppel: #58b09cff; /* RGB: 88, 176, 156 */
+    --aero-blue: #caf7e2ff; /* RBG: 202, 247, 226 */
+}
+
+@font-face {
+    font-family: "Montsserat Bold";
+    src: url('montserrat-bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto Regular";
+    src: url('Roboto-Regular.ttf');
+}
+
+html, body {
+    min-height: 100% !important;
+    height: 100%;
+}
