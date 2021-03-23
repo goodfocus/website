@@ -1,4 +1,6 @@
 class Api::V1::ProductReleaseSignupsController < ApplicationController
+  before_action :sanitize_params
+
   def create
     product_release_signup = ProductReleaseSignup.create!(product_release_signup_params)
     if product_release_signup
@@ -9,6 +11,10 @@ class Api::V1::ProductReleaseSignupsController < ApplicationController
   end
 
 private
+  def sanitize_params
+    params[:email] = params[:email].downcase
+  end
+
   def product_release_signup_params
     params.permit(:email)
   end

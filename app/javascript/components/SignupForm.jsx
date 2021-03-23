@@ -33,7 +33,7 @@ export class SignupForm extends React.Component {
         const email = this.state.email;
 
         // TODO: separate into .env files and use env contextual url
-        $.ajax('http://localhost:3000/api/v1/product_release_signups/create', {
+        $.ajax(`/api/v1/product_release_signups/create`, {
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({email}),
