@@ -14,7 +14,7 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: admin
-  password: <%= Rails.application.credentials.config[:mysql_pw] %>
+  password: <%= ENV.fetch('MYSQL_PW', Rails.application.credentials.config[:mysql_pw]) %>
   host: good-focus.cd05fdkwdcnu.us-west-1.rds.amazonaws.com
   port: 3306
 
