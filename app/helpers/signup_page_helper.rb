@@ -1,0 +1,2 @@
+module SignupPageHelper
+end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       post 'product_release_signups/create'
     end
   end
-  root 'homepage#index'
-  get '/*path' => 'homepage#index'
+  root 'signup_page#index'
+  get '/*path' => 'signup_page#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

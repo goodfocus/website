@@ -1,8 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types"
 import $ from 'jquery';
 import {bindMethodsToComponent} from '../helper';
 
-const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+const csrf = $("meta[name='csrf-token']").attr("content");
 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', csrf);
 });
@@ -13,8 +15,7 @@ export class SignupForm extends React.Component {
 
         this.state = {
             email: '',
-            errorMsg: '',
-            isComplete: false
+            errorMsg: ''
         }
 
         bindMethodsToComponent(this,
@@ -42,7 +43,7 @@ export class SignupForm extends React.Component {
             contentType: 'application/json',
             data: JSON.stringify({email}),
             success: () => {
-                this.setState({isComplete: true});
+                this.props.onSuccess(email);
             },
             error: (err) => {
                 // if expected error, display it, else display generic error message
@@ -78,4 +79,8 @@ export class SignupForm extends React.Component {
             </form>
         );
     }
+}
+
+SignupForm.propTypes = {
+    onSuccess: PropTypes.func.isRequired
 }
