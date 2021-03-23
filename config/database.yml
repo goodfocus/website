@@ -13,20 +13,21 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: localhost
+  username: admin
+  password: <%= Rails.application.credentials.config[:mysql_pw] %>
+  host: good-focus.cd05fdkwdcnu.us-west-1.rds.amazonaws.com
+  port: 3306
 
 development:
   <<: *default
-  database: website_development
+  database: development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: website_test
+  database: test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -43,13 +44,11 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
+#     url:
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   <<: *default
-  database: website_production
-  username: website
-  password: <%= ENV['WEBSITE_DATABASE_PASSWORD'] %>
+  database: production
