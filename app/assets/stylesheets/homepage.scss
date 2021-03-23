@@ -13,64 +13,6 @@ body {
   line-height: unset;
 }
 
-@media only screen and (max-height: 400px){
-  body {
-    font-size: .75rem;
-  }
-}
-
-strong {
-  color: var(--olive-drab);
-}
-
-form {
-  display: flex;
-}
-
-form input {
-  max-width: 20em;
-  margin-right: .25em;
-}
-
-@media only screen and (max-width: 450px) {
-  form {
-    flex-direction: column;
-  }
-
-  form input {
-    margin-right: 0;
-    margin-bottom: .25em;
-  }
-}
-
-form label {
-  color: var(--hunter-green);
-}
-
-form .btn {
-  color: white;
-  background-color: var(--hunter-green);
-  border-color: var(--hunter-green);
-  font-family: "Montsserat Bold";
-  min-width: 90px;
-}
-
-.btn:active,
-.btn:hover,
-.btn:hover:active {
-  background-color: var(--keppel);
-}
-
-.btn:hover {
-  border-color: var(--keppel);
-  color: white;
-}
-
-.form-control:focus, .btn:focus {
-  border-color: var(--keppel);
-  box-shadow: 0 0 5px 2px var(--hunter-green);
-}
-
 body > div {
   align-items: center;
   display: flex;
@@ -86,6 +28,45 @@ body > div {
   width: fit-content;
   height: fit-content;
 
+  form {
+    display: flex;
+
+    > div {
+      margin-right: .5em;
+      min-width: 20em;
+    }
+
+    label {
+      color: var(--hunter-green);
+    }
+
+    .btn {
+      align-self: baseline;
+      color: white;
+      background-color: var(--hunter-green);
+      border-color: var(--hunter-green);
+      font-family: "Montsserat Bold";
+      min-width: 90px;
+      height: calc(3.5rem + 2px);
+
+      &:active, &:hover, &:hover:active {
+        background-color: var(--keppel);
+      }
+
+      &:hover {
+        border-color: var(--keppel);
+        color: white;
+      }
+    }
+
+    .form-control, .btn {
+      &:focus {
+        border-color: var(--keppel);
+        box-shadow: 0 0 5px 2px var(--hunter-green);
+      }
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: "Montsserat Bold";
     color: var(--hunter-green);
@@ -99,4 +80,26 @@ body > div {
     font-size: 1.25em;
     margin-top: 1em;
   }
+
+  strong {
+    color: var(--olive-drab);
+  }
 }
+
+@media only screen and (max-height: 400px){
+  body {
+    font-size: .75rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  form {
+    flex-direction: column;
+
+    > div {
+      margin-right: 0;
+      margin-bottom: .5em;
+    }
+  }
+}
+
