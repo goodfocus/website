@@ -15,7 +15,8 @@ export class SignupForm extends React.Component {
 
         this.state = {
             email: '',
-            errorMsg: ''
+            errorMsg: '',
+            isLoading: false
         }
 
         bindMethodsToComponent(this,
@@ -37,7 +38,7 @@ export class SignupForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const email = this.state.email;
-
+        this.setState({isLoading: true});
         $.ajax(`/api/v1/product_release_signups/create`, {
             method: 'POST',
             contentType: 'application/json',
@@ -54,8 +55,9 @@ export class SignupForm extends React.Component {
                     errorMsg = 'Email could not be registered, please try again later.';
                 }
                 this.setState({errorMsg});
-            }
-        })
+            },
+            complete: () => this.setState({isLoading: false})
+        });
     }
 
     render() {
@@ -64,7 +66,7 @@ export class SignupForm extends React.Component {
                 <div className="form-floating">
                     <input
                         id="email"
-                        className={`form-control${ this.hasError() ?' is-invalid' : ''}`}
+                        className={`form-control${this.hasError() ? ' is-invalid' : ''}`}
                         type="email"
                         placeholder="name@example.com"
                         value={this.state.email}
@@ -75,7 +77,12 @@ export class SignupForm extends React.Component {
                         {this.state.errorMsg}
                     </div>
                 </div>
-                <button className="btn" type="submit">Sign up</button>
+                <button className="btn" type="submit">
+                    {this.state.isLoading ?
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div> : 'Sign Up'}
+                </button>
             </form>
         );
     }
